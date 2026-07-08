@@ -1,0 +1,144 @@
+syntax = "proto3";
+
+// --- INIT - BASE HEADERS --- //
+
+enum x_name_enum {
+    X_NAME_ENUM_UNSPECIFIED = 0;
+    ADQUIRENCIA = 1;
+    AUTH_ENTERPRISE = 2;
+    ALIADOS_ECOMMERCE = 3;
+    BANCA_MOVIL = 4;
+    BANCA_VIRTUAL = 5;
+    BDB_EMPRESAS = 6;
+    CDT = 7;
+    CUENTA_DE_AHORROS = 8;
+    LIBRANZAS = 9;
+    LIBRE_DESTINO = 10;
+    MICROFINANZAS = 11;
+    OMNICANALIDAD = 12;
+    POSTVENTA = 13;
+    PQRS = 14;
+    PSE_AFINIDAD = 15;
+    PSE_PERSONA_JURIDICA = 16;
+    PSE_PERSONA_NATURAL  = 17;
+    PYMES = 18;
+    SEGURIDAD = 19;
+    SEGUROS = 20;
+    TarjetaDeCredito = 21;
+    TRANSFIYA = 22;
+    TRANSVERSALES = 23;
+    VEHICULOS = 24;
+    VIVIENDA = 25;
+}
+
+enum x_channel_enum {
+    X_CHANNEL_ENUM_UNSPECIFIED = 0;
+    CHANNEL_WEB = 1;
+    CHANNEL_BANCA_MOVIL = 2;
+    CHANNEL_BANCA_VIRTUAL = 3;
+    CHANNEL_ALIADO = 4;
+    CHANNEL_FUERZA_MOVIL = 5;
+    CHANNEL_OFICINA = 6;
+    CHANNEL_MICROFINANZAS = 7;
+    PSE = 8;
+}
+
+enum x_cust_ident_type_enum {
+    X_CUST_IDENT_TYPE_UNSPECIFIED = 0;
+    CC = 1;
+    CE = 2;
+    NI = 3;
+    NJ = 4;
+    NE = 5;
+    PA = 6;
+    RC = 7;
+    TI = 8;
+}
+
+enum x_is_client_enum {
+    X_IS_CLIENT_ENUM_UNSPECIFIED = 0;
+    ACTIVE_CLIENT = 1;
+    LEAD = 2;
+    NO_CLIENT = 3;
+    UNIDENTIFIED = 4;
+}
+
+message BaseHeaders {
+    x_name_enum x_name = 1;
+    string x_rquid = 2;
+    x_channel_enum x_channel = 3;
+    x_cust_ident_type_enum x_cust_issue_ident_type=4;
+    string x_cust_identity_num=5;
+    string x_ip_add = 6;
+    string x_office_code = 7;
+    string x_access_token = 8;
+    x_is_client_enum x_is_client = 9;
+}
+
+// --- END - BASE HEADERS --- //
+
+message Header {
+    string rtind = 1;
+    string date =  2;
+    string time = 3;
+    string event =  4;
+    string user =  5;
+}
+
+message Fields {    
+    string fingerPrint = 1;
+    string banking = 2;
+}
+
+message ValidateRequest {
+    BaseHeaders baseHeaders = 1;
+    Header header = 2;
+    Fields fields = 3;
+}
+
+// --- INIT - VALIDATE RESPONSE --- //
+
+enum response_status_emun {
+    Success = 0;
+    cancelled = 1;
+    unknown = 2;
+    invalid_argument = 3;
+    deadline_exceeded = 4;
+    not_found = 5;
+    already_exists	= 6	;
+    permission_denied = 7 ;
+    resource_exhausted = 8 ;
+    failed_precondition = 9 ;
+    aborted = 10;
+    out_of_range = 11 ;
+    unimplemented = 12 ;
+    internal = 13 ;
+    unavailable = 14 ;
+    data_loss = 15 ;
+    unauthenticated	= 16;
+} 
+
+enum message_enum {
+    approved = 0;
+    deny = 1;
+    challenge = 2;
+    undefined = 3;
+    queued = 4;
+}  
+
+message DataResponse {
+    string id = 1;
+    message_enum message = 2;
+}
+
+message ValidateResponse {
+    response_status_emun status = 1;
+    string message = 2;
+    DataResponse data = 3;  
+}
+
+// --- INIT - VALIDATE RESPONSE --- //
+
+service ValidateTransaction {
+    rpc validate(ValidateRequest) returns (ValidateResponse){}
+}

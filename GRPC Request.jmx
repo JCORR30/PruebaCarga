@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Plan de Pruebas">
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="Variables definidas por el Usuario">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Grupo de Hilos">
+        <intProp name="ThreadGroup.num_threads">1</intProp>
+        <intProp name="ThreadGroup.ramp_time">1</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Controlador Bucle">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <vn.zalopay.benchmark.GRPCSampler guiclass="vn.zalopay.benchmark.GRPCSamplerGui" testclass="vn.zalopay.benchmark.GRPCSampler" testname="GRPC Request">
+          <stringProp name="GRPCSampler.protoFolder">C:\Users\JCORR30\OneDrive - BANCO DE BOGOTA\Documentos\proto</stringProp>
+          <stringProp name="GRPCSampler.libFolder"></stringProp>
+          <stringProp name="GRPCSampler.metadata"></stringProp>
+          <stringProp name="GRPCSampler.host">alb-0.labdigitalbdbtvsqa.com</stringProp>
+          <stringProp name="GRPCSampler.port">9034</stringProp>
+          <stringProp name="GRPCSampler.fullMethod">ValidateTransaction/validate</stringProp>
+          <stringProp name="GRPCSampler.deadline">3000</stringProp>
+          <boolProp name="GRPCSampler.tls">true</boolProp>
+          <boolProp name="GRPCSampler.tlsDisableVerification">true</boolProp>
+          <stringProp name="GRPCSampler.clientCertFile"></stringProp>
+          <stringProp name="GRPCSampler.clientKeyFile"></stringProp>
+          <stringProp name="GRPCSampler.caCertFile"></stringProp>
+          <stringProp name="GRPCSampler.channelAwaitTermination">30000</stringProp>
+          <stringProp name="GRPCSampler.maxInboundMessageSize">4194304</stringProp>
+          <stringProp name="GRPCSampler.maxInboundMetadataSize">8192</stringProp>
+          <stringProp name="GRPCSampler.requestJson">{
+    &quot;baseHeaders&quot;: {
+        &quot;x_channel&quot;: &quot;CHANNEL_BANCA_MOVIL&quot;,
+        &quot;x_cust_identity_num&quot;: &quot;1019139898&quot;,
+        &quot;x_cust_issue_ident_type&quot;: &quot;CC&quot;,
+        &quot;x_ip_add&quot;: &quot;201.244.228.232&quot;,
+        &quot;x_is_client&quot;: &quot;UNIDENTIFIED&quot;,
+        &quot;x_name&quot;: &quot;SEGUROS&quot;,
+        &quot;x_office_code&quot;: &quot;1&quot;,
+        &quot;x_rquid&quot;: &quot;7e5b98e5-0f1a-431e-b0e7-fc89211f2098&quot;
+    },
+    &quot;header&quot;: {
+        &quot;date&quot;: &quot;21022023&quot;,
+        &quot;event&quot;: &quot;348&quot;,
+        &quot;rtind&quot;: &quot;S&quot;,
+        &quot;time&quot;: &quot;2210&quot;,
+        &quot;user&quot;: &quot;USER&quot;
+    },
+    &quot;fields&quot;: {
+        &quot;fingerPrint&quot;: &quot;{\&quot;Browser\&quot;:{\&quot;userAgent\&quot;:\&quot;Mozilla/5.0(Macintosh;IntelMacOSX10_15_7)AppleWebKit/537.36(KHTML,likeGecko)Chrome/95.0.4638.69Safari/537.36\&quot;,\&quot;browserName\&quot;:\&quot;Chrome\&quot;,\&quot;browserVersion\&quot;:\&quot;95.0.4638.69\&quot;,\&quot;browserMajor\&quot;:\&quot;95\&quot;,\&quot;browserEngineName\&quot;:\&quot;WebKit\&quot;,\&quot;browserEngineVersion\&quot;:\&quot;537.36\&quot;,\&quot;osName\&quot;:\&quot;MacOS\&quot;,\&quot;osVersion\&quot;:\&quot;10.15.7\&quot;,\&quot;deviceVendor\&quot;:\&quot;\&quot;,\&quot;deviceModel\&quot;:\&quot;\&quot;,\&quot;deviceType\&quot;:\&quot;\&quot;,\&quot;cpuArchitecture\&quot;:\&quot;\&quot;,\&quot;isPrivateMode\&quot;:\&quot;0\&quot;},\&quot;General\&quot;:{\&quot;fingerprintVersion\&quot;:\&quot;3.0.0\&quot;,\&quot;language\&quot;:\&quot;es-ES\&quot;,\&quot;colorDepth\&quot;:\&quot;30\&quot;,\&quot;deviceMemory\&quot;:\&quot;8\&quot;,\&quot;hardwareConcurrency\&quot;:\&quot;8\&quot;,\&quot;resolution\&quot;:\&quot;1440x900\&quot;,\&quot;availableResolution\&quot;:\&quot;1440x826\&quot;,\&quot;timezoneOffset\&quot;:\&quot;300\&quot;,\&quot;sessionStorage\&quot;:\&quot;0\&quot;,\&quot;cookieEnabled\&quot;:\&quot;1\&quot;,\&quot;localStorage\&quot;:\&quot;1\&quot;,\&quot;indexedDb\&quot;:\&quot;0\&quot;,\&quot;cpuClass\&quot;:\&quot;\&quot;,\&quot;openDatabase\&quot;:\&quot;1\&quot;,\&quot;navigatorPlatform\&quot;:\&quot;MacIntel\&quot;,\&quot;vendorWebGL\&quot;:\&quot;1\&quot;,\&quot;rendererVideo\&quot;:\&quot;Intel(R)Iris(TM)PlusGraphics645\&quot;,\&quot;timeZone\&quot;:\&quot;GMT-0500(horaestándardeColombia)\&quot;,\&quot;zone\&quot;:\&quot;America/Bogota\&quot;,\&quot;UTC\&quot;:-5,\&quot;ram\&quot;:\&quot;8\&quot;,\&quot;processorCount\&quot;:\&quot;8\&quot;,\&quot;videoInput\&quot;:\&quot;1\&quot;,\&quot;audio\&quot;:\&quot;124.04347657808103\&quot;,\&quot;canvas\&quot;:-891944950},\&quot;Personalization\&quot;:{\&quot;numberPlugins\&quot;:\&quot;5\&quot;,\&quot;numberFonts\&quot;:\&quot;27\&quot;},\&quot;Alterations\&quot;:{\&quot;adblock\&quot;:\&quot;0\&quot;,\&quot;hasLiedLanguages\&quot;:\&quot;0\&quot;,\&quot;hasLiedResolution\&quot;:\&quot;0\&quot;,\&quot;hasLiedOs\&quot;:\&quot;0\&quot;,\&quot;hasLiedBrowser\&quot;:\&quot;0\&quot;,\&quot;touchSupport\&quot;:\&quot;0\&quot;},\&quot;Network\&quot;:{\&quot;publicIp\&quot;:\&quot;\&quot;,\&quot;localIp\&quot;:\&quot;\&quot;},\&quot;Site\&quot;:{\&quot;host\&quot;:\&quot;\&quot;,\&quot;hostName\&quot;:\&quot;\&quot;,\&quot;href\&quot;:\&quot;file:///Users/test/FraudDetector/FingerPrint/test.html\&quot;,\&quot;origin\&quot;:\&quot;\&quot;,\&quot;pathname\&quot;:\&quot;/Users/test/FraudDetector/FingerPrint/test.html\&quot;,\&quot;port\&quot;:\&quot;\&quot;,\&quot;protocol\&quot;:\&quot;file:\&quot;},\&quot;Identifiers\&quot;:{\&quot;cookie\&quot;:\&quot;Disabled\&quot;,\&quot;localStorageValue\&quot;:\&quot;Disabled\&quot;,\&quot;unanimity1\&quot;:\&quot;078894e388a64ea9e19a4aa526558c296af054f711b374cd60101e9ceca6a307\&quot;,\&quot;unanimity2\&quot;:\&quot;d0b96b13ef1038a0f714fd1c0decd217712e8290a729c4cb842169f6dfdf9616\&quot;,\&quot;unanimity3\&quot;:\&quot;4ce3eb519c3f49f1a62030b64b3d7149de28685bf51e06da08988b7bffbc5124\&quot;,\&quot;hash\&quot;:\&quot;612111A352A571CB.07961D0BCAEE9E7B.53\&quot;}}&quot;,
+        &quot;banking&quot;: &quot;{\&quot;operation\&quot;:{\&quot;TrnRqUID\&quot;:\&quot;78818aa8-ce86-4f10-b779-8c84df2f9280\&quot;,\&quot;sessionId\&quot;:\&quot;89D8BEBAE3EAFA3F6E8D4CB3D2C10634\&quot;,\&quot;realTime\&quot;:\&quot;S\&quot;,\&quot;channel\&quot;:\&quot;WEB\&quot;,\&quot;trnId\&quot;:\&quot;AVTL\&quot;,\&quot;indInternational\&quot;:\&quot;L\&quot;,\&quot;constantOne\&quot;:1,\&quot;appVersion\&quot;:\&quot;0.1.374-M\&quot;,\&quot;createdDt\&quot;:{\&quot;prcDt\&quot;:20220117,\&quot;prcTime\&quot;:165412,\&quot;finalPrcDt\&quot;:20220117165412},\&quot;trnInfo\&quot;:{\&quot;xferId\&quot;:\&quot;78818aa8-ce86-4f10-b779-8c84df2f9280\&quot;,\&quot;cut\&quot;:\&quot;78818aa8-ce86-4f10-b779-8c84df2f9280\&quot;,\&quot;curCode\&quot;:\&quot;COP\&quot;,\&quot;amt\&quot;:5300.12,\&quot;trnType\&quot;:\&quot;D\&quot;,\&quot;reverse\&quot;:\&quot;N\&quot;}},\&quot;custSource\&quot;:{\&quot;custIdentNum\&quot;:\&quot;14207840\&quot;,\&quot;custNetIdentNum\&quot;:\&quot;14207840\&quot;,\&quot;custPermId\&quot;:\&quot;CC14207840\&quot;,\&quot;custType\&quot;:\&quot;N\&quot;,\&quot;ipAddr\&quot;:\&quot;186.84.90.132\&quot;,\&quot;sourceFullName\&quot;:\&quot;PAULI\u00d1O PLAZAS\&quot;,\&quot;cellphone\&quot;:\&quot;3003333333\&quot;,\&quot;sourceEmailAddr\&quot;:\&quot;pruebas@pruebas.com\&quot;},\&quot;deepAcctIdFrom\&quot;:{\&quot;companyIdFrom\&quot;:\&quot;0001\&quot;,\&quot;productTypeFrom\&quot;:\&quot;SDA\&quot;,\&quot;subProductType\&quot;:\&quot;062AH\&quot;,\&quot;productId\&quot;:\&quot;000070714\&quot;,\&quot;officeIdFrom\&quot;:123,\&quot;openDtFrom\&quot;:20200112,\&quot;webAcct\&quot;:\&quot;S\&quot;,\&quot;acctStatusCode\&quot;:\&quot;N\&quot;,\&quot;balType\&quot;:\&quot;+\&quot;,\&quot;balanceAvail\&quot;:\&quot;1256300.12\&quot;},\&quot;deepAcctIdTo\&quot;:{\&quot;companyIdTo\&quot;:\&quot;001\&quot;,\&quot;acctId\&quot;:\&quot;000070706\&quot;,\&quot;productTypeTo\&quot;:\&quot;DDA\&quot;}}&quot;
+    }
+}</stringProp>
+        </vn.zalopay.benchmark.GRPCSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="Ver Árbol de Resultados">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Reporte resumen">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Informe Agregado">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
