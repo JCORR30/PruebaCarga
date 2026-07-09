@@ -21,7 +21,7 @@
       </ThreadGroup>
       <hashTree>
         <vn.zalopay.benchmark.GRPCSampler guiclass="vn.zalopay.benchmark.GRPCSamplerGui" testclass="vn.zalopay.benchmark.GRPCSampler" testname="GRPC Request">
-          <stringProp name="GRPCSampler.protoFolder">./proto</stringProp>
+          <stringProp name="GRPCSampler.protoFolder">C:\Users\JCORR30\OneDrive - BANCO DE BOGOTA\Documentos\proto\PruebaCarga</stringProp>
           <stringProp name="GRPCSampler.libFolder"></stringProp>
           <stringProp name="GRPCSampler.metadata"></stringProp>
           <stringProp name="GRPCSampler.host">alb-0.labdigitalbdbtvsqa.com</stringProp>
