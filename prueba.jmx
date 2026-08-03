@@ -172,6 +172,84 @@
             <stringProp name="filename"></stringProp>
           </ResultCollector>
           <hashTree/>
+          <JSR223Assertion guiclass="TestBeanGUI" testclass="JSR223Assertion" testname="JSR223 Assertion">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">import groovy.json.JsonSlurper
+ 
+def respuesta = prev.getResponseDataAsString()
+def codigoTecnico = prev.getResponseCode()
+ 
+// 1. Validar código técnico
+if (codigoTecnico != &apos;200&apos;) {
+    AssertionResult.setFailure(true)
+    AssertionResult.setFailureMessage(
+        &quot;Código técnico inesperado: ${codigoTecnico}&quot;
+    )
+    return
+}
+ 
+// 2. Validar que la respuesta no esté vacía
+if (respuesta == null || respuesta.trim().isEmpty()) {
+    AssertionResult.setFailure(true)
+    AssertionResult.setFailureMessage(
+        &apos;La respuesta del servicio está vacía&apos;
+    )
+    return
+}
+ 
+// 3. Validar que sea un JSON válido
+def json
+ 
+try {
+    json = new JsonSlurper().parseText(respuesta)
+} catch (Exception e) {
+    AssertionResult.setFailure(true)
+    AssertionResult.setFailureMessage(
+        &quot;La respuesta no es un JSON válido: ${respuesta}&quot;
+    )
+    return
+}
+ 
+// 4. Validar errores funcionales
+def respuestaMinuscula = respuesta.toLowerCase()
+ 
+def erroresDetectados = [
+    &apos;&quot;status&quot;:&quot;unknown&quot;&apos;,
+    &apos;&quot;status&quot;: &quot;unknown&quot;&apos;,
+    &apos;status code 404&apos;,
+    &apos;status code 500&apos;,
+    &apos;&quot;message&quot;:&quot;undefined&quot;&apos;,
+    &apos;&quot;message&quot;: &quot;undefined&quot;&apos;,
+    &apos;exception&apos;,
+    &apos;internal error&apos;
+]
+ 
+def errorEncontrado = erroresDetectados.find {
+    respuestaMinuscula.contains(it.toLowerCase())
+}
+ 
+if (errorEncontrado) {
+    AssertionResult.setFailure(true)
+    AssertionResult.setFailureMessage(
+        &quot;Error funcional detectado [${errorEncontrado}]: ${respuesta}&quot;
+    )
+    return
+}
+ 
+// 5. Validar explícitamente el campo status
+if (json.status != null &amp;&amp;
+    json.status.toString().equalsIgnoreCase(&apos;unknown&apos;)) {
+ 
+    AssertionResult.setFailure(true)
+    AssertionResult.setFailureMessage(
+        &quot;Estado funcional inválido: ${json.status}&quot;
+    )
+}</stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223Assertion>
+          <hashTree/>
         </hashTree>
       </hashTree>
     </hashTree>
