@@ -109,8 +109,6 @@ def erroresDetectados = [
     &apos;&quot;status&quot;: &quot;unknown&quot;&apos;,
     &apos;status code 404&apos;,
     &apos;status code 500&apos;,
-    &apos;&quot;message&quot;:&quot;undefined&quot;&apos;,
-    &apos;&quot;message&quot;: &quot;undefined&quot;&apos;,
     &apos;exception&apos;,
     &apos;internal error&apos;
 ]
